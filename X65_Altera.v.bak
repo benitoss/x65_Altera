@@ -132,7 +132,7 @@ module X65_Altera (
     
     // IRQ signals
     reg VIRQn;
-    wire AIRQn;
+    reg AIRQn;
     reg EIRQn;
     
     // Reset signals
@@ -152,8 +152,6 @@ module X65_Altera (
     reg FMISO;
     wire FSCK;
     wire FLASHCSn;
-	 
-	 wire [20:0] MA = {MAH, MAL};
    
 nora_top nora (
         // Clock
@@ -295,7 +293,7 @@ T65 u_T65 (
   .ML_n    (CMLn),
   .VP_n    (CVPn),
   .VDA     (CVDA),
-  .VPA     (),
+  .VPA     (CSYNC_VPA),
   .A       (CA),
   .DI      (CD),
   .DO      (CD),
@@ -346,14 +344,14 @@ aura aura_inst (
     .ASYSCLK(CLK_25),
     
     // I/O Bus
-    .AB(MA[4:0]),           // 5-bit address bus
-    .DB(MD[7:0]),             // 8-bit bidirectional data bus
-    .ACS1N(ACS1n),
-    .VCS0N(VCS0n),
-    .MRDN(MRDn),
-    .MWRN(MWRn),
-    .AIRQN(AIRQn),
-    .IOCSN(),
+    .AB(address_bus),           // 5-bit address bus
+    .DB(data_bus),             // 8-bit bidirectional data bus
+    .ACS1N(audio_chip_select_n),
+    .VCS0N(vera_chip_select_n),
+    .MRDN(memory_read_n),
+    .MWRN(memory_write_n),
+    .AIRQN(audio_irq_n),
+    .IOCSN(io_chip_select_n),
     
     // Audio input from VERA (I2S)
     .VAUDIO_LRCK(vera_audio_lrck),
@@ -370,10 +368,10 @@ aura aura_inst (
     .AURALED(aura_led_out),
     
     // SPI Flash
-    .ASPI_MOSI(),
-    .ASPI_MISO(),
-    .ASPI_SCK(),
-    .AFLASH_SSELN()
+    .ASPI_MOSI(spi_master_out),
+    .ASPI_MISO(spi_master_in),
+    .ASPI_SCK(spi_clock_out),
+    .AFLASH_SSELN(flash_slave_select_n)
 );
 	 
 	 

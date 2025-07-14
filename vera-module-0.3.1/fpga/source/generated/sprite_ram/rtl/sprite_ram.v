@@ -3818,107 +3818,69 @@ module sprite_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                                 assign rd_data_w[1] = rdata_w[11] ; 
                                                                             end
                 wire t_wr_en_i = ((BYTE_ENABLE == 0) ? wr_en_i : ((BYTE_WIDTH > 1) ? wr_en_i : (wr_en_i & ben_i))) ; 
-//                PDP4K u_mem0 (.ADR(raddr_w), 
-//                            .ADW(waddr_w), 
-//                            .DI(wdata_w), 
-//                            .MASK_N(mask_t_w), 
-//                            .CER(rd_clk_en_i), 
-//                            .CKR(rd_clk_i), 
-//                            .RE(rd_en_i), 
-//                            .CEW(wr_clk_en_i), 
-//                            .CKW(wr_clk_i), 
-//                            .WE(t_wr_en_i), 
-//                            .DO(rdata_w)) ; 
-//                localparam R = ((DATA_WIDTH_R == 16) ? "16" : ((DATA_WIDTH_R == 8) ? "8" : ((DATA_WIDTH_R == 4) ? "4" : "2"))) ; 
-//                localparam W = ((DATA_WIDTH_W == 16) ? "16" : ((DATA_WIDTH_W == 8) ? "8" : ((DATA_WIDTH_W == 4) ? "4" : "2"))) ; 
-//                localparam X_T0 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-//                localparam X_T1 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-//                localparam X_T2 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-//                localparam X_T3 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-//                localparam X_T4 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-//                localparam X_T5 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-//                localparam X_T6 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-//                localparam X_T7 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-//                localparam X_T8 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-//                localparam X_T9 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-//                localparam X_TA = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-//                localparam X_TB = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-//                localparam X_TC = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-//                localparam X_TD = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-//                localparam X_TE = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-//                localparam X_TF = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-//                localparam X0 = ((INIT_MODE == "mem_file") ? INIT_VALUE_00 : X_T0) ; 
-//                localparam X1 = ((INIT_MODE == "mem_file") ? INIT_VALUE_01 : X_T1) ; 
-//                localparam X2 = ((INIT_MODE == "mem_file") ? INIT_VALUE_02 : X_T2) ; 
-//                localparam X3 = ((INIT_MODE == "mem_file") ? INIT_VALUE_03 : X_T3) ; 
-//                localparam X4 = ((INIT_MODE == "mem_file") ? INIT_VALUE_04 : X_T4) ; 
-//                localparam X5 = ((INIT_MODE == "mem_file") ? INIT_VALUE_05 : X_T5) ; 
-//                localparam X6 = ((INIT_MODE == "mem_file") ? INIT_VALUE_06 : X_T6) ; 
-//                localparam X7 = ((INIT_MODE == "mem_file") ? INIT_VALUE_07 : X_T7) ; 
-//                localparam X8 = ((INIT_MODE == "mem_file") ? INIT_VALUE_08 : X_T8) ; 
-//                localparam X9 = ((INIT_MODE == "mem_file") ? INIT_VALUE_09 : X_T9) ; 
-//                localparam XA = ((INIT_MODE == "mem_file") ? INIT_VALUE_0A : X_TA) ; 
-//                localparam XB = ((INIT_MODE == "mem_file") ? INIT_VALUE_0B : X_TB) ; 
-//                localparam XC = ((INIT_MODE == "mem_file") ? INIT_VALUE_0C : X_TC) ; 
-//                localparam XD = ((INIT_MODE == "mem_file") ? INIT_VALUE_0D : X_TD) ; 
-//                localparam XE = ((INIT_MODE == "mem_file") ? INIT_VALUE_0E : X_TE) ; 
-//                localparam XF = ((INIT_MODE == "mem_file") ? INIT_VALUE_0F : X_TF) ; 
-//                defparam u_mem0.DATA_WIDTH_W = W ; 
-//                defparam u_mem0.DATA_WIDTH_R = R ; 
-//                defparam u_mem0.INITVAL_0 = X0 ; 
-//                defparam u_mem0.INITVAL_1 = X1 ; 
-//                defparam u_mem0.INITVAL_2 = X2 ; 
-//                defparam u_mem0.INITVAL_3 = X3 ; 
-//                defparam u_mem0.INITVAL_4 = X4 ; 
-//                defparam u_mem0.INITVAL_5 = X5 ; 
-//                defparam u_mem0.INITVAL_6 = X6 ; 
-//                defparam u_mem0.INITVAL_7 = X7 ; 
-//                defparam u_mem0.INITVAL_8 = X8 ; 
-//                defparam u_mem0.INITVAL_9 = X9 ; 
-//                defparam u_mem0.INITVAL_A = XA ; 
-//                defparam u_mem0.INITVAL_B = XB ; 
-//                defparam u_mem0.INITVAL_C = XC ; 
-//                defparam u_mem0.INITVAL_D = XD ; 
-//                defparam u_mem0.INITVAL_E = XE ; 
-//                defparam u_mem0.INITVAL_F = XF ; 
-
-						generic_pdp4k #(
-							.ADDR_WIDTH_R(12),
-							.ADDR_WIDTH_W(12),
-							.DATA_WIDTH_R(DATA_WIDTH_R),
-							.DATA_WIDTH_W(DATA_WIDTH_W),
-							.DEPTH(4096),
-							.INIT_MODE(INIT_MODE),
-							.INIT_VALUE_00(INIT_VALUE_00),
-							.INIT_VALUE_01(INIT_VALUE_01),
-							.INIT_VALUE_02(INIT_VALUE_02),
-							.INIT_VALUE_03(INIT_VALUE_03),
-							.INIT_VALUE_04(INIT_VALUE_04),
-							.INIT_VALUE_05(INIT_VALUE_05),
-							.INIT_VALUE_06(INIT_VALUE_06),
-							.INIT_VALUE_07(INIT_VALUE_07),
-							.INIT_VALUE_08(INIT_VALUE_08),
-							.INIT_VALUE_09(INIT_VALUE_09),
-							.INIT_VALUE_0A(INIT_VALUE_0A),
-							.INIT_VALUE_0B(INIT_VALUE_0B),
-							.INIT_VALUE_0C(INIT_VALUE_0C),
-							.INIT_VALUE_0D(INIT_VALUE_0D),
-							.INIT_VALUE_0E(INIT_VALUE_0E),
-							.INIT_VALUE_0F(INIT_VALUE_0F)
-						) u_mem0 (
-							.ADR(raddr_w),
-							.ADW(waddr_w),
-							.DI(wdata_w),
-							.MASK_N(mask_t_w),
-							.CER(rd_clk_en_i),
-							.CKR(rd_clk_i),
-							.RE(rd_en_i),
-							.CEW(wr_clk_en_i),
-							.CKW(wr_clk_i),
-							.WE(t_wr_en_i),
-							.DO(rdata_w)
-						);
-
+                PDP4K u_mem0 (.ADR(raddr_w), 
+                            .ADW(waddr_w), 
+                            .DI(wdata_w), 
+                            .MASK_N(mask_t_w), 
+                            .CER(rd_clk_en_i), 
+                            .CKR(rd_clk_i), 
+                            .RE(rd_en_i), 
+                            .CEW(wr_clk_en_i), 
+                            .CKW(wr_clk_i), 
+                            .WE(t_wr_en_i), 
+                            .DO(rdata_w)) ; 
+                localparam R = ((DATA_WIDTH_R == 16) ? "16" : ((DATA_WIDTH_R == 8) ? "8" : ((DATA_WIDTH_R == 4) ? "4" : "2"))) ; 
+                localparam W = ((DATA_WIDTH_W == 16) ? "16" : ((DATA_WIDTH_W == 8) ? "8" : ((DATA_WIDTH_W == 4) ? "4" : "2"))) ; 
+                localparam X_T0 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
+                localparam X_T1 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
+                localparam X_T2 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
+                localparam X_T3 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
+                localparam X_T4 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
+                localparam X_T5 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
+                localparam X_T6 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
+                localparam X_T7 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
+                localparam X_T8 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
+                localparam X_T9 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
+                localparam X_TA = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
+                localparam X_TB = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
+                localparam X_TC = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
+                localparam X_TD = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
+                localparam X_TE = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
+                localparam X_TF = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
+                localparam X0 = ((INIT_MODE == "mem_file") ? INIT_VALUE_00 : X_T0) ; 
+                localparam X1 = ((INIT_MODE == "mem_file") ? INIT_VALUE_01 : X_T1) ; 
+                localparam X2 = ((INIT_MODE == "mem_file") ? INIT_VALUE_02 : X_T2) ; 
+                localparam X3 = ((INIT_MODE == "mem_file") ? INIT_VALUE_03 : X_T3) ; 
+                localparam X4 = ((INIT_MODE == "mem_file") ? INIT_VALUE_04 : X_T4) ; 
+                localparam X5 = ((INIT_MODE == "mem_file") ? INIT_VALUE_05 : X_T5) ; 
+                localparam X6 = ((INIT_MODE == "mem_file") ? INIT_VALUE_06 : X_T6) ; 
+                localparam X7 = ((INIT_MODE == "mem_file") ? INIT_VALUE_07 : X_T7) ; 
+                localparam X8 = ((INIT_MODE == "mem_file") ? INIT_VALUE_08 : X_T8) ; 
+                localparam X9 = ((INIT_MODE == "mem_file") ? INIT_VALUE_09 : X_T9) ; 
+                localparam XA = ((INIT_MODE == "mem_file") ? INIT_VALUE_0A : X_TA) ; 
+                localparam XB = ((INIT_MODE == "mem_file") ? INIT_VALUE_0B : X_TB) ; 
+                localparam XC = ((INIT_MODE == "mem_file") ? INIT_VALUE_0C : X_TC) ; 
+                localparam XD = ((INIT_MODE == "mem_file") ? INIT_VALUE_0D : X_TD) ; 
+                localparam XE = ((INIT_MODE == "mem_file") ? INIT_VALUE_0E : X_TE) ; 
+                localparam XF = ((INIT_MODE == "mem_file") ? INIT_VALUE_0F : X_TF) ; 
+                defparam u_mem0.DATA_WIDTH_W = W ; 
+                defparam u_mem0.DATA_WIDTH_R = R ; 
+                defparam u_mem0.INITVAL_0 = X0 ; 
+                defparam u_mem0.INITVAL_1 = X1 ; 
+                defparam u_mem0.INITVAL_2 = X2 ; 
+                defparam u_mem0.INITVAL_3 = X3 ; 
+                defparam u_mem0.INITVAL_4 = X4 ; 
+                defparam u_mem0.INITVAL_5 = X5 ; 
+                defparam u_mem0.INITVAL_6 = X6 ; 
+                defparam u_mem0.INITVAL_7 = X7 ; 
+                defparam u_mem0.INITVAL_8 = X8 ; 
+                defparam u_mem0.INITVAL_9 = X9 ; 
+                defparam u_mem0.INITVAL_A = XA ; 
+                defparam u_mem0.INITVAL_B = XB ; 
+                defparam u_mem0.INITVAL_C = XC ; 
+                defparam u_mem0.INITVAL_D = XD ; 
+                defparam u_mem0.INITVAL_E = XE ; 
+                defparam u_mem0.INITVAL_F = XF ; 
                 if ((REGMODE == "reg")) 
                     begin : genblk6
                         reg [(DATA_WIDTH_R - 1):0] rd_buff_r ; 

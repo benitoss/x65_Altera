@@ -360,12 +360,12 @@ set_global_assignment -name FINAL_PLACEMENT_OPTIMIZATION AUTOMATICALLY
 set_global_assignment -name QII_AUTO_PACKED_REGISTERS "SPARSE AUTO"
 set_global_assignment -name ALLOW_REGISTER_DUPLICATION ON
 
+
 set_global_assignment -name QIP_FILE pll.qip
 set_global_assignment -name QIP_FILE T65/T65.qip
-set_global_assignment -name QIP_FILE nora.qip
-set_global_assignment -name QIP_FILE vera.qip
-set_global_assignment -name QIP_FILE aura.qip
-
+set_global_assignment -name QIP_FILE nora/nora.qip
+set_global_assignment -name QIP_FILE "vera-module-0.3.1/vera.qip"
+set_global_assignment -name QIP_FILE "fpga-aura/aura.qip"
 set_global_assignment -name VERILOG_FILE X65_Altera.v
 set_global_assignment -name SYSTEMVERILOG_FILE sdram.sv
 set_global_assignment -name VERILOG_FILE build_id.v

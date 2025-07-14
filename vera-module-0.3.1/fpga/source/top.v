@@ -1,6 +1,6 @@
 //`default_nettype none
 
-module vera_top(
+module top(
     input  wire       clk25,
 
     // External bus interface
@@ -1126,12 +1126,12 @@ module vera_top(
     //////////////////////////////////////////////////////////////////////////
     // FPGA reconfiguration
     //////////////////////////////////////////////////////////////////////////
-//`ifndef __ICARUS__
-//    WARMBOOT warmboot(
-//        .S1(1'b0),
-//        .S0(1'b0),
-//        .BOOT(fpga_reconfigure_r));
-//`endif
+`ifndef __ICARUS__
+    WARMBOOT warmboot(
+        .S1(1'b0),
+        .S0(1'b0),
+        .BOOT(fpga_reconfigure_r));
+`endif
 
     //////////////////////////////////////////////////////////////////////////
     // SPI interface
