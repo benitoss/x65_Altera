@@ -205,7 +205,7 @@ nora_top nora (
         
         // PS2 ports
         .PS2K_CLK		(PS2_CLK),
-        .PS2K_DATA	(PS2_DAT),
+        .PS2K_DATA	(PS2_DATA),
 //        `ifdef MOBOV1
 //        .PS2K_CLKDR	(PS2K_CLKDR),
 //        .PS2K_DATADR	(PS2K_DATADR),
@@ -244,7 +244,7 @@ nora_top nora (
         .ICD_SCK		(ICD_SCK),
         
         // Button input
-        .ATTBTN		(KEY1),
+        .ATTBTN		(ATTBTN),
         
         // Master SPI interface
         .FMOSI			(FMOSI),
@@ -273,33 +273,33 @@ nora_top nora (
 //        .MLB(CMLn),
 //        .VPB(CVPn)
 //    );
-	 
+
 T65 u_T65 (
-  .Mode    (Mode),
-  .BCD_en  (BCD_en),
-  .Res_n   (Res_n),
-  .Enable  (Enable),
+  .Mode    (2'b01),     //65c02
+  .BCD_en  (1'b1),      //Verify
+  .Res_n   (CRESn),
+  .Enable  (1'b1),
   .Clk     (CPHI2),
   .Rdy     (CRDY),
-  .Abort_n (1'b1),
+  .Abort_n (CABORTn),
   .IRQ_n   (CIRQn),
   .NMI_n   (CNMIn),
-  .SO_n    (SO_n),
-  .R_W_n   (R_W_n),
-  .Sync    (Sync),
-  .EF      (EF),
-  .MF      (MF),
-  .XF      (XF),
-  .ML_n    (ML_n),
-  .VP_n    (VP_n),
+  .SO_n    (~CSOB_MX),
+  .R_W_n   (CRWn),
+  .Sync    (CSYNC_VPA),
+  .EF      (CEF),
+  .MF      (),
+  .XF      (),
+  .ML_n    (CMLn),
+  .VP_n    (CVPn),
   .VDA     (CVDA),
   .VPA     (CSYNC_VPA),
-  .A       (A),
-  .DI      (DI),
-  .DO      (DO),
+  .A       (CA),
+  .DI      (CD),
+  .DO      (CD),
   .Regs    (Regs),
-  .DEBUG   ( ),
-  .NMI_ack (NMI_ack)
+  .DEBUG   (),
+  .NMI_ack ()
 );
 
 // Instantiation of the top module
@@ -308,12 +308,12 @@ vera_top vera_top (
     .clk25(CLK_25),
     
     // External bus interface
-    .extbus_cs_n(extbus_cs_n),
-    .extbus_rd_n(extbus_rd_n),
-    .extbus_wr_n(extbus_wr_n),
-    .extbus_a(extbus_a),
-    .extbus_d(extbus_d),
-    .extbus_irq_n(extbus_irq_n),
+    .extbus_cs_n(),
+    .extbus_rd_n(),
+    .extbus_wr_n(),
+    .extbus_a(),
+    .extbus_d(),
+    .extbus_irq_n(),
     
     // VGA interface
     .vga_r(VGA_R),
