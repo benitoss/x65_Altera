@@ -126,8 +126,8 @@ module sprite_line_buffer(
     assign wr_addr_2 =  active_render_buffer ? renderer_wr_idx  : {composer_wr_idx, 2'b0};
     assign wr_data_1 = !active_render_buffer ? renderer_wr_data : 16'b0;
     assign wr_data_2 =  active_render_buffer ? renderer_wr_data : 16'b0;
-    assign wr_data_1 = !active_render_buffer ? renderer_wr_data : 16'b0;
-    assign wr_data_2 =  active_render_buffer ? renderer_wr_data : 16'b0;
+    // assign wr_data_1 = !active_render_buffer ? renderer_wr_data : 16'b0;  // line duplicated 
+    // assign wr_data_2 =  active_render_buffer ? renderer_wr_data : 16'b0;  // line duplicated
     assign wr_en_1a  = !active_render_buffer ? renderer_wr_en_a : composer_wr_en;
     assign wr_en_2a  =  active_render_buffer ? renderer_wr_en_a : composer_wr_en;
     assign wr_en_1b  = !active_render_buffer ? renderer_wr_en_b : composer_wr_en;
